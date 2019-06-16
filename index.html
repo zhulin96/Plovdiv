@@ -1,0 +1,249 @@
+<!DOCTYPE html> 
+<html lang="en"> 
+<head>
+	<meta charset="utf-8">
+	<title>A simple Leaflet map</title>
+	<script src="http://maps.googleapis.com/maps/api/js?libraries=geometry"></script>
+	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css"integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA==" crossorigin=""/>
+	<script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js" integrity="sha512-QVftwZFqvtRNi0ZyCtsznlKSWOStnDORoefr1enyq5mVL4tmKB3S/EnC3rRJcxCPavG10IcrVGSmPh6Qw5lwrg==" crossorigin=""></script>
+	<script src="https://unpkg.com/esri-leaflet@2.2.4/dist/esri-leaflet.js" integrity="sha512-tyPum7h2h36X52O2gz+Pe8z/3l+Y9S1yEUscbVs5r5aEY5dFmP1WWRY/WLLElnFHa+k1JBQZSCDGwEAnm2IxAQ==" crossorigin=""></script>
+
+<style>
+	* { box-sizing: border-box; }
+	.video-background {
+	  background: black;
+	  position: absolute;
+	  top: 0; bottom: 0;left:0;
+	  z-index: -99;
+	}
+	.video-foreground,
+	.video-background iframe {
+	  position: absolute;
+	  top: 0;
+	  left:0;
+	 
+	  height: 100%;
+	  pointer-events: none;
+	}
+	
+	* {
+	  margin: 0;
+	  padding: 0;
+	}
+
+	body{
+	  width: 100%;
+	  height: 100vh;
+	  overflow: hidden;
+	  background; white
+	}
+	.column {
+	  float: left;
+	}
+
+	.column.left {
+	  width: 65%
+	}
+	.column.right {
+	  width: 35%
+	  
+	}
+	
+	#leaflet_map {
+	position: absolute;
+    width: 100%;
+    height: 100%;
+	}
+	
+</style>
+</head>
+<body>
+<div class="column left">
+	<div class="video-background">
+		<div class="video-foreground" id="YouTubeBackgroundVideoPlayer">
+		</div>
+	</div>
+
+	<svg  id = "route" width="950px" height="880px" viewBox="0 0 1280 1300" >
+		
+		<g id="background">
+			<path
+			   style="fill:#1a1a1a;stroke:#000000;stroke-width:7.55905512;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+			   d="M 50.507627,495.84204 H 1226.3252"
+			   id="path"
+			   inkscape:connector-curvature="0" />
+		</g>
+		<g id="stations">
+		
+			<circle
+			   style="fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1.88976383;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+			   id="path1438"
+			   cx="57.700531"
+			   cy="494.95422"
+			   r = "15" />
+			<circle
+			   style="fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1.88976383;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+			   id="path1438-1"
+			   cx="264.72089"
+			   cy="492.93396"
+			   r = "15"/>
+			<circle
+			   style="fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1.88976383;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+			   id="path1438-8"
+			   cx="488.97473"
+			   cy="496.97455"
+			   r = "15" />
+			<circle
+			   style="fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1.88976383;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+			   id="path1438-5"
+			   cx="713.22858"
+			   cy="496.97455"
+			   r = "15"/>
+			<circle
+			   style="fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1.88976383;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+			   id="path1438-7"
+			   cx="959.70581"
+			   cy="494.95422"
+			   r = "15"/>
+			<circle
+			   style="fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1.88976383;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+			   id="path1438-87"
+			   cx="1220.3252"
+			   cy="496.97455"
+			   r ="15" />
+			<text
+			   xml:space="preserve"
+			   style="font-style:normal;font-weight:normal;font-size:32px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+			   x="-661.74725"
+			   y="238.13023"
+			   id="text5198"
+			   transform="rotate(-70.8)"><tspan
+				 sodipodi:role="line"
+				 id="tspan5196"
+				 x="-800.74725"
+				 y="238.13023">Odeon of Philippopolis</tspan></text>
+			<text
+			   xml:space="preserve"
+			   style="font-style:normal;font-weight:normal;font-size:32px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+			   x="-593.61414"
+			   y="430.55759"
+			   id="text5198-2"
+			   transform="rotate(-70.8)"><tspan
+				 sodipodi:role="line"
+				 id="tspan5196-7"
+				 x="-493.61414"
+				 y="430.55759">Efbet</tspan></text>
+			<text
+			   xml:space="preserve"
+			   style="font-style:normal;font-weight:normal;font-size:32px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+			   x="-653.81549"
+			   y="642.4585"
+			   id="text5198-2-8"
+			   transform="rotate(-70.8)"><tspan
+				 sodipodi:role="line"
+				 id="tspan5196-7-0"
+				 x="-660.81549"
+				 y="642.4585">Plovdiv Drama Theatre</tspan></text>
+			<text
+			   xml:space="preserve"
+			   style="font-style:normal;font-weight:normal;font-size:32px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+			   x="-359.10583"
+			   y="853.89679"
+			   id="text5198-2-8-8"
+			   transform="rotate(-70.8)"><tspan
+				 sodipodi:role="line"
+				 id="tspan5196-7-0-1"
+				 x="-559.10583"
+				 y="853.89679">City Artistict Gallery</tspan></text>
+			<text
+			   xml:space="preserve"
+			   style="font-style:normal;font-weight:normal;font-size:32px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+			   x="-522.98907"
+			   y="1087.4452"
+			   id="text5198-2-8-8-4"
+			   transform="rotate(-70.8)"><tspan
+				 sodipodi:role="line"
+				 id="tspan5196-7-0-1-9"
+				 x="-422.98907"
+				 y="1087.4452">Roman Stadium</tspan></text>
+			<text
+			   xml:space="preserve"
+			   style="font-style:normal;font-weight:normal;font-size:32px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+			   x="-339.40134"
+			   y="1331.6674"
+			   id="text5198-2-8-8-4-8"
+			   transform="rotate(-70.8)"><tspan
+				 sodipodi:role="line"
+				 id="tspan5196-7-0-1-9-5"
+				 x="-400.40134"
+				 y="1331.6674">Dzhumaya Mosque</tspan></text>
+		</g>
+		<g id="overlays">
+			<circle
+			   style="fill:red;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1.88976383;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+			   id="marker"
+			   cx="57.700531"
+			   cy="494.95422"
+			   r = "15">
+			   <!--set the pace using the keytime-->
+			  <animate attributeName="cx"
+                 attributeType="XML"
+                 dur="160s"
+                 values="57.700531 ; 264.72089; 264.72089 ; 488.97473; 488.97473 ; 713.22858 ; 713.22858; 959.70581 ; 959.70581; 1220.3252 ;1220.3252"
+                 keyTimes="0 ; 0.4 ;0.405; 0.5 ; 0.505; 0.6 ;0.605; 0.8; 0.805; 0.995; 1.0"
+                 repeatCount="indefinite"/>
+			</circle>
+		</g>
+	</svg>
+</div>
+<div class="column right" >
+	<div id="leaflet_map"></div>
+	<script src="src/Site.json"></script>
+	<script type="text/javascript" src="MovingMarker.js"></script>
+	<script src='leaflet_map.js'></script>
+ </div>
+
+	<script async src="https://www.youtube.com/iframe_api"></script>
+	<script >
+		function onYouTubeIframeAPIReady() {
+		  var player;
+		  player = new YT.Player('YouTubeBackgroundVideoPlayer', {
+			  videoId: 'NlfC12WXvx4', // YouTube Video ID
+			  width: 900,               // Player width (in px)
+			  height: 880,              // Player height (in px)
+			  playerVars: {
+				  playlist: 'NlfC12WXvx4',
+				  autoplay: 1,        // Auto-play the video on load
+				  autohide: 1,
+				  disablekb: 1, 
+				  controls: 0,        // Hide pause/play buttons in player
+				  showinfo: 0,        // Hide the video title
+				  modestbranding: 1,  // Hide the Youtube Logo
+				  loop: 1,            // Run the video in a loop
+				  fs: 0,              // Hide the full screen button
+				  autohide: 0,         // Hide video controls when playing
+				  rel: 0,
+				  enablejsapi: 1
+			  },
+			  events: {
+				onReady: function(e) {
+					e.target.mute();
+					e.target.setPlaybackQuality('hd1080');
+				},
+				onStateChange: function(e) {
+				  if(e && e.data === 1){
+					  var videoHolder = document.getElementById('home-banner-box');
+					  if(videoHolder && videoHolder.id){
+						videoHolder.classList.remove('loading');
+					  }
+				  }else if(e && e.data === 0){
+					e.target.playVideo()
+				  }
+				}
+			  }
+		  });
+		}
+	</script>
+ </body>
+
+</html>
